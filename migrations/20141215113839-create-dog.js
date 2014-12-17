@@ -21,7 +21,7 @@ module.exports = {
         type: DataTypes.INTEGER
       },
       weight: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       userId: {
         type: DataTypes.INTEGER

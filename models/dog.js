@@ -2,11 +2,13 @@
 
 module.exports = function(sequelize, DataTypes) {
   var dog = sequelize.define("dog", {
+
+    // added validations to certain datatypes to restrict user when inputting data for dog(s)
     name: DataTypes.STRING,
     gender: DataTypes.STRING,
     breed: DataTypes.STRING,
     age: DataTypes.INTEGER,
-    weight: DataTypes.INTEGER,
+    weight: DataTypes.STRING,
     userId: DataTypes.INTEGER
   }, {
     classMethods: {
