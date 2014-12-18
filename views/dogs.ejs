@@ -1,10 +1,12 @@
 <% include partials/header.ejs %>
+
+<img src="/images/dogpad.jpeg">
 <div class="col-md-6">
 
 <h3>doggie pad</h3>
 
 <% if(user) { %>
-Hello, <b><%= typeof user.name === "string" ? user.name : 'Unknown' %></b>.
+<h3>Hello, <b><%= typeof user.name === "string" ? user.name : 'Unknown' %></b>.</h3>
 <% } %>
 <br><br>
    <a href="/dogs/new" class="btn btn-primary">Add dog</a>
@@ -17,7 +19,7 @@ Hello, <b><%= typeof user.name === "string" ? user.name : 'Unknown' %></b>.
   
    <table class="table table-striped" border="4">
    		<tr>
-   			<th></th>
+   			<th>Paw-file Picture</th>
    			<th>Name</th>
    			<th>Breed</th>
    			<th>Gender</th>

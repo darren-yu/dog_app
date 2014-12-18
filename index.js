@@ -258,7 +258,6 @@ app.get("/dogs", function(req, res) {
 
 // delete button to remove user specific dogs
 app.delete("/dogs/:id", function(req, res) {
-    var user = req.getUser;
     // console.log("-----------------*********-------------",req.params.id)
     db.dog.destroy({where: {"id":req.params.id}}).then(function(data){
         res.send({"delete": data});

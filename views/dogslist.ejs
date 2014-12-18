@@ -1,4 +1,7 @@
 <% include partials/header.ejs %>
+
+<img src="/images/dogbrand.jpeg">
+
 <div class="col-md-6">
 
 <h3>dogs list</h3>
@@ -24,7 +27,7 @@
 
 <table class="table table-striped" border="4">
 	<tr>
-		<th></th>
+		<th>Paw-file Picture</th>
 		<th>Name</th>
 		<th>Breed</th>
 		<th>Gender</th>
@@ -33,6 +36,12 @@
 		<th>Play Date?</th>
 	</tr>
 	<% alldogs.forEach(function(element) {%>
+
+	
+
+
+
+
 	<tr>
 		<td>
 			<img src="<%= element.thumb %>">

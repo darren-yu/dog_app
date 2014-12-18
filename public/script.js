@@ -5,7 +5,7 @@ $(function(){
 		event.preventDefault();
 		var thisDeleteButton = $(this);
 
-		if(confirm("Remove Doggy from your list?")) {
+		if(confirm("Removing your doggy, Are you sure?")) {
 			// alert("its gone");
 			$.ajax({
 				url: "/dogs/" + $(this).data("dropdog"),

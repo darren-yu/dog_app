@@ -7,7 +7,16 @@ font-family: 'Gloria Hallelujah', cursive;
 used for other sentence
 font-family: 'Indie Flower', cursive;*/
 
+body {
+	background-image: url("/images/doggybackdrop.jpeg");
+}
+
 
 h1 {
 	font-family: 'Gloria Hallelujah', cursive;
+}
+
+
+.table, h3, h4, p {
+	font-family: 'Indie Flower', cursive;
 }
