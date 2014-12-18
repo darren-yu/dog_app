@@ -21,7 +21,9 @@ Hello, <b><%= typeof user.name === "string" ? user.name : 'Unknown' %></b>.
    			<th>Name</th>
    			<th>Breed</th>
    			<th>Gender</th>
+   			<th>Weight Size</th>
    			<th>Age</th>
+   			<th>Remove Doggy?</th>
    		</tr>
    		<% dogs.forEach(function(element) {%>
    		<tr>
@@ -42,7 +44,15 @@ Hello, <b><%= typeof user.name === "string" ? user.name : 'Unknown' %></b>.
    			</td>
 
    			<td>
+   				<%= element.weight%>
+   			</td>
+
+   			<td>
    				<%= element.age %>
+   			</td>
+
+   			<td>
+   				<a href="#" data-dropdog="<%=element.id%>" class="btn btn-danger btn-sm deleteDog">BYE BYE</a>
    			</td>
    		</tr>
    		<% }) %>

@@ -8,9 +8,9 @@
 <form class="form" method="get" action="/dogs/list">
 	<select class="form-control" name="weight">
 		<option value="">All weight</option>
-		<option value="small">dogs &lt; 20 lbs</option>
-		<option value="medium">dogs between 20.1 to 34 lbs</option>
-		<option value="big">dogs &gt; 34.1 lbs</option>
+		<option value="small">Small: dogs &lt; 20 lbs</option>
+		<option value="medium">Medium: dogs between 20.1 to 34 lbs</option>
+		<option value="big">Big: dogs &gt; 34.1 lbs</option>
       
 	</select>
 	<br>
@@ -27,8 +27,10 @@
 		<th></th>
 		<th>Name</th>
 		<th>Breed</th>
+		<th>Gender</th>
+		<th>Weight Size</th>
 		<th>Age</th>
-		<th></th>
+		<th>Play Date?</th>
 	</tr>
 	<% alldogs.forEach(function(element) {%>
 	<tr>
@@ -45,18 +47,23 @@
 		</td>
 
 		<td>
+			<%= element.gender %>
+		</td>
+
+		<td>
+			<%= element.weight %>
+		</td>
+
+		<td>
 			<%= element.age %>
 		</td>
 
 		<td>
-			<a href="/dogs/play/<%= element.id %>" class="btn btn-info btn-sm">play date!</a>
+			<a href="/dogs/play/<%= element.id %>" class="btn btn-info btn-sm">Paw Me!</a>
 		</td>
 	</tr>
 	<% }) %>
 </table>
-
-	
-   
 
 
 </div>

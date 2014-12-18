@@ -12,7 +12,35 @@ var cloudinary = require("cloudinary");
 
 var flash = require("connect-flash");
 
+var sendgrid = require("sendgrid")(
+process.env.SENDGRID_USERNAME, 
+process.env.SENDGRID_PASSWORD
+);
+
+
+
 var app = express();
+
+
+// testing sending email from app
+sendgrid.send({
+    to: "mazinkaiser_83@hotmail.com",
+    from: "darren.d.yu@gmail.com",
+    subject: "your doggy play",
+    text: "my first email through sendgrid."
+}, function(err, json) {
+    if (err) {
+        return console.error(err); 
+    }
+});
+
+
+
+
+
+
+
+
 
 
 
@@ -225,6 +253,16 @@ app.get("/dogs", function(req, res) {
         res.redirect("/auth/login")
     }
     
+})
+
+
+// delete button to remove user specific dogs
+app.delete("/dogs/:id", function(req, res) {
+    var user = req.getUser;
+    // console.log("-----------------*********-------------",req.params.id)
+    db.dog.destroy({where: {"id":req.params.id}}).then(function(data){
+        res.send({"delete": data});
+    })
 })
 
 
