@@ -1,15 +1,60 @@
 <% include partials/header.ejs %>
 <div class="col-md-6">
 
-<h3>hello dogs</h3>
+<h3>doggie pad</h3>
+
+<% if(user) { %>
+Hello, <b><%= typeof user.name === "string" ? user.name : 'Unknown' %></b>.
+<% } %>
+<br><br>
    <a href="/dogs/new" class="btn btn-primary">Add dog</a>
 
    <a href="/dogs/list" class="btn btn-primary">list of all dogs</a>
-
-   <% dogs.forEach(function(element) {%>
-   	<%= element.name %>
-   <% }) %>
+   <br><br>
 
 
+   <p>Your dogs:</p>
+  
+   <table class="table table-striped" border="4">
+   		<tr>
+   			<th></th>
+   			<th>Name</th>
+   			<th>Breed</th>
+   			<th>Gender</th>
+   			<th>Age</th>
+   		</tr>
+   		<% dogs.forEach(function(element) {%>
+   		<tr>
+   			<td>
+   				<img src="<%= element.thumb %>">
+   			</td>
+
+   			<td>
+   				<%= element.name %>
+   			</td>
+
+   			<td>
+   			 	<%= element.breed %>
+   			</td>
+
+   			<td>
+   				<%= element.gender %>
+   			</td>
+
+   			<td>
+   				<%= element.age %>
+   			</td>
+   		</tr>
+   		<% }) %>
+   	</table>
+   	
 </div>
+
+<a href="/auth/logout" class="btn btn-primary">Log out</a>
 <% include partials/footer.ejs %>
+
+
+
+
+
+				

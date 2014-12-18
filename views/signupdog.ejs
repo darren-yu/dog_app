@@ -10,8 +10,9 @@
         <input type="text" class="form-control" placeholder="Enter the age of dog" name="age">
         <br><br>
         <select class="form-control" name="weight">
-            <option value="small">Less than 15.0 pounds.</option>
-            <option value="big">Greater than 15.1 pounds.</option>
+            <option value="small">Less than 20 lbs.</option>
+            <option value="medium">Between 20.1 to 34 lbs.</option>
+            <option value="big">Greater than 34.1 lbs.</option>
         </select>
         <br><br>
         <select class="form-control" name="gender">
@@ -20,10 +21,13 @@
         </select>
         <br><br>
         <label for="form-control">Attach dog image</label>
-        <input type="file" name="dogImg">
+        <input type="file" class="form-control" name="dogImg">
         <br><br>
         <input type="submit" value="Add Dog" class="btn btn-primary">
     </form>
+
+
+    <a href="/auth/logout" class="btn btn-primary">Log out</a>
 
 </div>
 <% include partials/footer.ejs %>

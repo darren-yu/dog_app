@@ -3,20 +3,14 @@
 
 <% include partials/header.ejs %>
 
-<h1>My home page</h1>
-<% if(user) { %>
-Hello, <b><%= typeof user.name === 'string' ? user.name : 'Unknown' %></b>.
-<% } %>
+<h1>Doggie plays!</h1>
+<br>
+<h5>Welcome!</h5>
+
 <br><br>
 <!-- <a href="/restricted" class="btn btn-danger">Go to restricted page</a> -->
 <a href="/auth/login" class="btn btn-primary">Login</a>
 <a href="/auth/signup" class="btn btn-primary">Sign up</a>
-
-
-
-<!-- creating buton for log out (DY)--> 
-<a href="/auth/logout" class="btn btn-primary">Log out</a>
-<!--  -->
 
 
 <!-- created include (DY) 12.11.14 -->

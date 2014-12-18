@@ -2,13 +2,71 @@
 <div class="col-md-6">
 
 <h3>dogs list</h3>
+<hr>
+<h5>Filter by:</h5>
 
-	<ul>
-   <% alldogs.forEach(function(element) {%>
-   	<li><%= element.name + "/" + element.breed + "/" + element.age + "/" + element.id %></li>
-   <% }) %>
-   </ul>
+<form class="form" method="get" action="/dogs/list">
+	<select class="form-control" name="weight">
+		<option value="">All weight</option>
+		<option value="small">dogs &lt; 20 lbs</option>
+		<option value="medium">dogs between 20.1 to 34 lbs</option>
+		<option value="big">dogs &gt; 34.1 lbs</option>
+      
+	</select>
+	<br>
+	<select class="form-control" name="gender">
+		<option value="">All gender</option>
+		<option value="male">male dogs</option>
+		<option value="female">female dogs</option>
+	</select>
+	<input type="submit" class="btn" value="search">
+</form>
+
+<table class="table table-striped" border="4">
+	<tr>
+		<th></th>
+		<th>Name</th>
+		<th>Breed</th>
+		<th>Age</th>
+		<th></th>
+	</tr>
+	<% alldogs.forEach(function(element) {%>
+	<tr>
+		<td>
+			<img src="<%= element.thumb %>">
+		</td>
+
+		<td>
+			<%= element.name %>
+		</td>
+
+		<td>
+			<%= element.breed %>
+		</td>
+
+		<td>
+			<%= element.age %>
+		</td>
+
+		<td>
+			<a href="/dogs/play/<%= element.id %>" class="btn btn-info btn-sm">play date!</a>
+		</td>
+	</tr>
+	<% }) %>
+</table>
+
+	
+   
 
 
 </div>
+
+<a href="/dogs" class="btn btn-primary">Your doggie pad</a>
+<br><br>
+<a href="/auth/logout" class="btn btn-primary">Log out</a>
 <% include partials/footer.ejs %>
+
+
+
+   
+   	
