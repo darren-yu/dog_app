@@ -301,7 +301,7 @@ app.post("/dogs/play/:id", function(req, res) {
             mailBody += req.body.comment;
             var mailData={
                 to: otherUser.email,
-                from: "darren.d.yu@gmail.com",
+                from: user.email,
                 subject: "Doggy Play Date",
                 text: mailBody
             };
