@@ -13,35 +13,11 @@ var cloudinary = require("cloudinary");
 var flash = require("connect-flash");
 
 var sendgrid = require("sendgrid")(
-process.env.SENDGRID_USERNAME, 
-process.env.SENDGRID_PASSWORD
+    process.env.SENDGRID_USERNAME, 
+    process.env.SENDGRID_PASSWORD
 );
 
-
-
 var app = express();
-
-
-// testing sending email from app
-sendgrid.send({
-    to: "mazinkaiser_83@hotmail.com",
-    from: "darren.d.yu@gmail.com",
-    subject: "your doggy play",
-    text: "my first email through sendgrid."
-}, function(err, json) {
-    if (err) {
-        return console.error(err); 
-    }
-});
-
-
-
-
-
-
-
-
-
 
 
 app.set("view engine","ejs");
@@ -71,6 +47,7 @@ app.use(function(req, res, next) {
 app.get("*", function(req, res, next) {
      var alerts = req.flash();
      res.locals.alerts = alerts;
+     res.locals.user = req.getUser();
      next();
 })
 
@@ -267,10 +244,12 @@ app.delete("/dogs/:id", function(req, res) {
 
 // get route for all the dogs in the dogs models 
 app.get("/dogs/list", function(req, res) {
-    var user = req.getUser();
 
-    // empty filter object to check against db per the req.queries below.
-    var filters = {};
+    var user = req.getUser();
+    // res.send(user);
+
+    // filter object to check against db per the req.queries.
+    var filters = {userId:{ne:user.id}};
 
     // filtering dogs by criteria and passing the filtered key/value pair to check against dogs db.
     if(req.query.weight) {
@@ -312,7 +291,36 @@ app.get("/dogs/play/:id", function(req, res) {
 
 
 app.post("/dogs/play/:id", function(req, res) {
-    res.send({body: req.body, params: req.params});
+
+    var user = req.getUser();
+
+    db.dog.find(req.params.id).then(function(dog) {
+        dog.getUser().then(function(otherUser) {
+
+            var mailBody = "";
+            mailBody += user.name + " , would like to meet you at " + req.body["dog-park"] + "." + "\r\n\r\n";
+            mailBody += req.body.comment;
+            var mailData={
+                to: otherUser.email,
+                from: "darren.d.yu@gmail.com",
+                subject: "Doggy Play Date",
+                text: mailBody
+            };
+
+            // console.log('mail data',mailData);
+
+            sendgrid.send(mailData, function(err, json) {
+                if (err) {
+                    req.flash("danger", err);
+                }
+                else {
+                    req.flash("success", "Your play date has been sent");
+                    // console.log('json response',json);
+                }
+                res.redirect("/dogs/list");
+            });
+        });
+    });
 })
 
 
