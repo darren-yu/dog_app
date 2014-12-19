@@ -47,7 +47,7 @@ app.use(function(req, res, next) {
 })
 
 
-// alerts to be displayed for all get routes
+// passing alerts and user for all get routes
 app.get("*", function(req, res, next) {
      var alerts = req.flash();
      res.locals.alerts = alerts;
@@ -155,7 +155,14 @@ app.post("/auth/signup",function(req,res){
 
 // get route "/dogs/new" is for user to add their dogs
 app.get("/dogs/new", function(req, res) {
-    res.render("signupdog");
+    var user = req.getUser();
+
+    if (user) {
+        res.render("signupdog");
+    }
+    else {
+        res.redirect("/auth/login")
+    }
 })
 
 
@@ -285,7 +292,14 @@ app.get("/dogs/list", function(req, res) {
 
 // get route for users to select a park and comment to other dog owners.
 app.get("/dogs/play/:id", function(req, res) {
-    res.render("parkscomment");
+    var user = req.getUser();
+
+    if (user) {
+        res.render("parkscomment");
+    }
+    else {
+        res.redirect("/auth/login");
+    }
 })
 
 
@@ -293,33 +307,38 @@ app.post("/dogs/play/:id", function(req, res) {
 
     var user = req.getUser();
 
-    db.dog.find(req.params.id).then(function(dog) {
-        dog.getUser().then(function(otherUser) {
+    if (user) {
 
-            var mailBody = "";
-            mailBody += user.name + " , would like to meet you at " + req.body["dog-park"] + "." + "\r\n\r\n";
-            mailBody += req.body.comment;
-            var mailData={
-                to: otherUser.email,
-                from: user.email,
-                subject: "Doggy Play Date",
-                text: mailBody
-            };
+        db.dog.find(req.params.id).then(function(dog) {
+            dog.getUser().then(function(otherUser) {
 
-            // console.log('mail data',mailData);
+                var mailBody = "";
+                mailBody += user.name + ", would like their dog to meet yours at " + req.body["dog-park"] + "." + "\r\n\r\n";
+                mailBody += req.body.comment;
+                var mailData={
+                    to: otherUser.email,
+                    from: user.email,
+                    subject: "Doggy Play Pals: Incoming Play Date!",
+                    text: mailBody
+                };
 
-            sendgrid.send(mailData, function(err, json) {
-                if (err) {
-                    req.flash("danger", err);
-                }
-                else {
-                    req.flash("success", "Your play date has been sent");
-                    // console.log('json response',json);
-                }
-                res.redirect("/dogs/list");
+                // console.log('mail data',mailData);
+                sendgrid.send(mailData, function(err, json) {
+                    if (err) {
+                        req.flash("danger", err);
+                    }
+                    else {
+                        req.flash("success", "An email has been sent to doggy owner for play date.");
+                        // console.log('json response',json);
+                    }
+                    res.redirect("/dogs/list");
+                });
             });
         });
-    });
+    }
+    else {
+        res.redirect("/auth/login");
+    }
 })
 
 
