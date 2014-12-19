@@ -1,4 +1,5 @@
 body {
+	height: 100%;
 	background-image: url("/images/doggybackdrop.jpeg");
 }
 
@@ -24,7 +25,14 @@ table {
 	border-radius: 10px;
 	border-style: solid;
 	border-color: rgb(96,96,96);
+	margin-top: 5px;
+	margin-bottom: 5px;
 
+}
+
+.wrapper {
+	/*padding-bottom: 75px;*/
+	margin-bottom: 60px;
 }
 
 .container-fluid {
@@ -37,6 +45,13 @@ table {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+
+.footer {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+
 
 
 
