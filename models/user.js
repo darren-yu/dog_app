@@ -24,6 +24,7 @@ module.exports = function(sequelize, DataTypes) {
             args: [5,100],
             msg: "Please use a password longer than 5 characters."
           }
+          
       }
     },
     distance: DataTypes.INTEGER

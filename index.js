@@ -4,9 +4,11 @@ var session = require("express-session");
 
 var multer = require("multer");
 
+var bodyParser = require('body-parser');
+
 var bcrypt = require("bcrypt"); 
 
-var db = require("./models/index.js");
+var db = require('./models/');
 
 var cloudinary = require("cloudinary");
 
@@ -23,6 +25,8 @@ var app = express();
 app.set("view engine","ejs");
 
 app.use(express.static(__dirname + "/public"));
+
+app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(multer({dest: __dirname + "/uploads"}));
 
@@ -115,11 +119,6 @@ app.get("/auth/signup",function(req,res){
 app.post("/auth/signup",function(req,res){
     //do sign up here (add user to database)
     // console.log(req.body);
-    if(!req.body.password) {
-        req.flash("danger", "Don't forget to chose your password");
-        res.redirect("/auth/signup");
-    }
-
 
     db.user.findOrCreate({
         where: {
