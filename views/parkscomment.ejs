@@ -1,35 +1,37 @@
 <% include partials/header.ejs %>
 
-<img src="/images/dogpark.jpeg">
 
-<div class="col-md-6">
+      <div class="col-md-12 text-block">
 
-   <h3>Let's Play</h3>
-            
-   <form class="form" method="post" enctype="multipart/form-data">
-      <div class="form-group">
-         <select class="form-control" name="dog-park">
-            <option value="Dr. Jose Rizal Dog Park (Seattle,WA)">Dr. Jose Rizal Dog Park (Off-leash): Seattle,WA</option>
-            <option value="Magnuson Dog Park (Seattle,WA)">Magnuson Dog Park (Off-leash): Seattle,WA</option>
-            <option value="Plymouth Pillars Dog Park (Seattle,WA)">Plymouth Pillars Dog Park (Off-Leash): Seattle,WA</option>
-            <option value="Westcrest Dog Park (Seattle,WA)">Westcrest Dog Park (Off-leash): Seattle,WA</option>
-            <option value="Woodland Dog Park (Seattle,WA)">Woodland Dog Park (Off-leash): Seattle,WA</option>
-         </select>
-      </div>  
-      <hr>
-      <div class="form-group">
-         <label for="form-control">Send a comment for play date to dog owner:</label>
-         <textarea class="form-control" name="comment" rows="4"></textarea>
+         <img class="dogImage" src="/images/dogpark.jpeg">
+         <h3> Play Time! <img src="/images/Pawprint.png"></h3>
+         <hr>
+         <p>Time to schedule a doggy play date! Select a dog park from the drop down menu and include a message from the message
+         section below for the doggy owner. Doggy Play Pals will contact the doggy owner with the selected dog park 
+         and message by sending an email to the doggy owner from your email provided, connecting both parties for a potential 
+         doggy play date!
+         </p>
+         <hr>
+         <form class="form" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+               <select class="form-control" name="dog-park">
+                  <option value="Dr. Jose Rizal Dog Park (Seattle,WA)">Dr. Jose Rizal Dog Park (Off-leash): Seattle,WA</option>
+                  <option value="Magnuson Dog Park (Seattle,WA)">Magnuson Dog Park (Off-leash): Seattle,WA</option>
+                  <option value="Plymouth Pillars Dog Park (Seattle,WA)">Plymouth Pillars Dog Park (Off-Leash): Seattle,WA</option>
+                  <option value="Westcrest Dog Park (Seattle,WA)">Westcrest Dog Park (Off-leash): Seattle,WA</option>
+                  <option value="Woodland Dog Park (Seattle,WA)">Woodland Dog Park (Off-leash): Seattle,WA</option>
+               </select>
+            </div>  
+            <hr>
+            <div class="form-group">
+               <label for="form-control">Send a message to dog owner for play date:</label>
+               <textarea class="form-control" name="comment" rows="4"></textarea>
+            </div>
+            <input type="submit" class="btn btn-primary">
+         </form>
+         <hr>
       </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-   </form>
-</div>
+      <br>
 
-<a href="/dogs" class="btn btn-primary">Your doggie pad</a>
-<br><br>
 
-<a href="/dogs/list" class="btn btn-primary">list of all dogs</a>
-<br><br>
-
-<a href="/auth/logout" class="btn btn-primary">Log out</a>
 <% include partials/footer.ejs %>

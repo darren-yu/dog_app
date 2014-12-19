@@ -1,79 +1,83 @@
 <% include partials/header.ejs %>
 
-<img src="/images/doggroup.jpeg">
 
-<div class="col-md-6">
+		<div class="col-md-12 text-block">
+			<img class="dogImage" src="/images/doggroup.jpeg">
+			<h3>Dogs List <img src="/images/Pawprint.png"></h3>
+			<hr>
+			<p>The <b>Dogs List</b> displays doggies of other owners who just wanna have fun! Here you will be able to 
+			select a potential play pal for your little friend. Filter for specific doggies if your little friend is on the shy side. 
+			</p>
+			<hr>
+			<h5>Filter by:</h5>
+			<form class="form" method="get" action="/dogs/list">
+				<select class="form-control" name="weight">
+					<option value="">All weight</option>
+					<option value="small">Small: dogs &lt; 20 lbs</option>
+					<option value="medium">Medium: dogs between 20.1 to 34 lbs</option>
+					<option value="big">Big: dogs &gt; 34.1 lbs</option>
+				</select>
+				<br>
+				<select class="form-control" name="gender">
+					<option value="">All gender</option>
+					<option value="male">male dogs</option>
+					<option value="female">female dogs</option>
+				</select>
+				<br>
+				<input type="submit" class="btn btn-primary" value="Filter">
+			</form>
+			<hr>
+		</div>
+		<br>
 
-<h3>dogs list</h3>
-<hr>
-<h5>Filter by:</h5>
+		<div class="col-md-12 text-block">
+		<br>
+			<table class="table table-hover" border="2">
+				<tr>
+					<th>Paw-file Picture</th>
+					<th>Name</th>
+					<th>Breed</th>
+					<th>Gender</th>
+					<th>Weight Size</th>
+					<th>Age</th>
+					<th>Play Date?</th>
+				</tr>
+				<% alldogs.forEach(function(element) {%>
+				<tr>
+					<td>
+						<img src="<%= element.thumb %>">
+					</td>
 
-<form class="form" method="get" action="/dogs/list">
-	<select class="form-control" name="weight">
-		<option value="">All weight</option>
-		<option value="small">Small: dogs &lt; 20 lbs</option>
-		<option value="medium">Medium: dogs between 20.1 to 34 lbs</option>
-		<option value="big">Big: dogs &gt; 34.1 lbs</option>
-      
-	</select>
-	<br>
-	<select class="form-control" name="gender">
-		<option value="">All gender</option>
-		<option value="male">male dogs</option>
-		<option value="female">female dogs</option>
-	</select>
-	<input type="submit" class="btn" value="search">
-</form>
+					<td>
+						<%= element.name %>
+					</td>
 
-<table class="table" border="4">
-	<tr>
-		<th>Paw-file Picture</th>
-		<th>Name</th>
-		<th>Breed</th>
-		<th>Gender</th>
-		<th>Weight Size</th>
-		<th>Age</th>
-		<th>Play Date?</th>
-	</tr>
-	<% alldogs.forEach(function(element) {%>
-	<tr>
-		<td>
-			<img src="<%= element.thumb %>">
-		</td>
+					<td>
+						<%= element.breed %>
+					</td>
 
-		<td>
-			<%= element.name %>
-		</td>
+					<td>
+						<%= element.gender %>
+					</td>
 
-		<td>
-			<%= element.breed %>
-		</td>
+					<td>
+						<%= element.weight %>
+					</td>
 
-		<td>
-			<%= element.gender %>
-		</td>
+					<td>
+						<%= element.age %>
+					</td>
 
-		<td>
-			<%= element.weight %>
-		</td>
-
-		<td>
-			<%= element.age %>
-		</td>
-
-		<td>
-			<a href="/dogs/play/<%= element.id %>" class="btn btn-info btn-sm">Paw Me!</a>
-		</td>
-	</tr>
-	<% }) %>
-</table>
+					<td>
+						<a href="/dogs/play/<%= element.id %>" class="btn btn-info btn-sm">Paw Me!</a>
+					</td>
+				</tr>
+				<% }) %>
+			</table>
+		</div>
+		<br>
 
 
-</div>
-
-<a href="/dogs" class="btn btn-primary">Your doggie pad</a>
-<br><br>
-<a href="/auth/logout" class="btn btn-primary">Log out</a>
 <% include partials/footer.ejs %>
 
 

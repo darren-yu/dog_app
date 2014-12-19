@@ -1,68 +1,70 @@
 <% include partials/header.ejs %>
 
-<img src="/images/dogpad.jpeg">
-<div class="col-md-6">
 
-<h3>doggie pad</h3>
+		<div class="col-md-12 text-block">
+			<img class="dogImage" src="/images/dogpad.jpeg">
+			<h3>Doggie Pad <img src="/images/Pawprint.png"></h3>
+			<hr>
+			<% if(user) { %>
+			<h5>Hello, <b><%= typeof user.name === "string" ? user.name : 'Unknown' %></b>.</h5>
+			<% } %>
+			<hr>
+			<p>The <b>Doggy Pad</b> is the home page for your doggies; here you will be able to view and add your little friends with the add button below. Don't forget to check the <b>Dogs List</b> to see other doggies for play dates!
+			</p>
+			<a href="/dogs/new" class="btn btn-primary btn-sm">Add Dog</a>
+			<hr>
+		</div>
 
-<% if(user) { %>
-<h3>Hello, <b><%= typeof user.name === "string" ? user.name : 'Unknown' %></b>.</h3>
-<% } %>
-<br><br>
-   <a href="/dogs/new" class="btn btn-primary">Add dog</a>
+		<br>
+		<div class="col-md-12 text-block">
+		   <h5>Your Dogs:</h5>
+		   <table class="table table-hover" border="2">
+		   		<tr>
+		   			<th>Paw-file Picture</th>
+		   			<th>Name</th>
+		   			<th>Breed</th>
+		   			<th>Gender</th>
+		   			<th>Weight Size</th>
+		   			<th>Age</th>
+		   			<th>Remove Doggy?</th>
+		   		</tr>
+		   		<% dogs.forEach(function(element) {%>
+		   		<tr>
+		   			<td>
+		   				<img src="<%= element.thumb %>">
+		   			</td>
 
-   <a href="/dogs/list" class="btn btn-primary">list of all dogs</a>
-   <br><br>
+		   			<td>
+		   				<%= element.name %>
+		   			</td>
+
+		   			<td>
+		   			 	<%= element.breed %>
+		   			</td>
+
+		   			<td>
+		   				<%= element.gender %>
+		   			</td>
+
+		   			<td>
+		   				<%= element.weight%>
+		   			</td>
+
+		   			<td>
+		   				<%= element.age %>
+		   			</td>
+
+		   			<td>
+		   				<a href="#" data-dropdog="<%=element.id%>" class="btn btn-danger btn-sm deleteDog">BYE BYE</a>
+		   			</td>
+		   		</tr>
+		   		<% }) %>
+		   	</table>
+		   	
+		</div>
+		<br>
 
 
-   <p>Your dogs:</p>
-  
-   <table class="table" border="4">
-   		<tr>
-   			<th>Paw-file Picture</th>
-   			<th>Name</th>
-   			<th>Breed</th>
-   			<th>Gender</th>
-   			<th>Weight Size</th>
-   			<th>Age</th>
-   			<th>Remove Doggy?</th>
-   		</tr>
-   		<% dogs.forEach(function(element) {%>
-   		<tr>
-   			<td>
-   				<img src="<%= element.thumb %>">
-   			</td>
-
-   			<td>
-   				<%= element.name %>
-   			</td>
-
-   			<td>
-   			 	<%= element.breed %>
-   			</td>
-
-   			<td>
-   				<%= element.gender %>
-   			</td>
-
-   			<td>
-   				<%= element.weight%>
-   			</td>
-
-   			<td>
-   				<%= element.age %>
-   			</td>
-
-   			<td>
-   				<a href="#" data-dropdog="<%=element.id%>" class="btn btn-danger btn-sm deleteDog">BYE BYE</a>
-   			</td>
-   		</tr>
-   		<% }) %>
-   	</table>
-   	
-</div>
-
-<a href="/auth/logout" class="btn btn-primary">Log out</a>
 <% include partials/footer.ejs %>
 
 
