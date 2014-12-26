@@ -6,7 +6,15 @@ module.exports = function(sequelize, DataTypes) {
   var user = sequelize.define("user", {
 
     // added validations to certain datatypes to restrict specific user input.
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+          len: {
+            args: [5,60],
+            msg: "Please enter your full first and last name."
+          }
+      }
+    },
     address: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,

@@ -4,11 +4,11 @@ var session = require("express-session");
 
 var multer = require("multer");
 
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 
 var bcrypt = require("bcrypt"); 
 
-var db = require('./models/');
+var db = require("./models/");
 
 var cloudinary = require("cloudinary");
 
@@ -34,7 +34,7 @@ app.use(session({
     secret: "doggy play",
     resave: false,
     saveUninitialized: true
-}))
+}));
  
 app.use(flash());
 
@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
         return req.session.user || false;
     }
     next();
-})
+});
 
 
 // passing alerts and user for all get routes
@@ -53,7 +53,7 @@ app.get("*", function(req, res, next) {
      res.locals.alerts = alerts;
      res.locals.user = req.getUser();
      next();
-})
+});
 
 
 // main landing page

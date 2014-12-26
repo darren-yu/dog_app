@@ -5,16 +5,16 @@
             <h3>Step 1: Sign Up <img src="/images/Pawprint.png"></h3>
             <hr>
             <form class="form" method="post" action="/auth/signup">
-                <input type="text" class="form-control" placeholder="Enter your full name" name="name">
+                <input type="text" class="form-control" placeholder="Enter your full name" name="name" required>
                 <br><br>
                 <input type="text" class="form-control" placeholder="Enter your address (EX 1234 Dog Street, Seattle, WA 99999)" 
-                name="address">
+                name="address" required>
                 <br><br>
-                <input type="text" class="form-control" placeholder="Enter your e-mail" name="email"> 
+                <input type="text" class="form-control" placeholder="Enter your e-mail" name="email" required> 
                 <br><br>
-                <input type="password" class="form-control" placeholder="Choose a password" name="password">
+                <input type="password" class="form-control" placeholder="Choose a password" name="password" required>
                 <br><br>
-                <input type="password" class="form-control" placeholder="Re-type your password" name="password2">
+                <input type="password" class="form-control" placeholder="Re-type your password" name="password2" required>
                 <br><br>
                 <select class="form-control" name="distance">
                     <option value="1">Dog parks within: 1 mile</option>

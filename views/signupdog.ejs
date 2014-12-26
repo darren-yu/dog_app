@@ -5,11 +5,11 @@
             <h3>Step 2: Add Dog <img src="/images/Pawprint.png"></h3>
             <hr>
             <form class="form" method="post" action="/dogs" enctype="multipart/form-data">
-                <input type="text" class="form-control" placeholder="Enter the name of dog" name="name">
+                <input type="text" class="form-control" placeholder="Enter the name of dog" name="name" required>
                 <br><br>
-                <input type="text" class="form-control" placeholder="Enter the breed of dog" name="breed">
+                <input type="text" class="form-control" placeholder="Enter the breed of dog" name="breed" required>
                 <br><br>
-                <input type="text" class="form-control" placeholder="Enter the age of dog" name="age">
+                <input type="text" class="form-control" placeholder="Enter the age of dog" name="age" required>
                 <br><br>
                 <select class="form-control" name="weight">
                     <option value="small">Less than 20 lbs.</option>
