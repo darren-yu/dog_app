@@ -46,7 +46,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-
 // passing alerts and user for all get routes
 app.get("*", function(req, res, next) {
      var alerts = req.flash();
@@ -350,6 +349,15 @@ app.get("/auth/logout",function(req, res){
     req.flash("info", "You have been log out");
     res.redirect("/");
 
+});
+
+
+app.use(function(req, res){
+    // var errMsg = "";
+    // errMsg += "404 Error: Page not found. \r\n\r\n"
+    // errMsg += "Sorry, the file that is being accessed doesn't exist or isn't available."
+    res.status(404);
+    res.render("error404");
 });
 
 
