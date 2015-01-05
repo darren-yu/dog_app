@@ -353,9 +353,6 @@ app.get("/auth/logout",function(req, res){
 
 
 app.use(function(req, res){
-    // var errMsg = "";
-    // errMsg += "404 Error: Page not found. \r\n\r\n"
-    // errMsg += "Sorry, the file that is being accessed doesn't exist or isn't available."
     res.status(404);
     res.render("error404");
 });

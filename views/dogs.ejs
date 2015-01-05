@@ -6,11 +6,11 @@
 			<h3>Doggie Pad <img src="/images/Pawprint.png"></h3>
 			<hr>
 			<% if(user) { %>
-			<h5>Hello, <b><%= typeof user.name === "string" ? user.name : 'Unknown' %></b>.</h5>
+			<h4>Hello, <b><%= typeof user.name === "string" ? user.name : 'Unknown' %></b>.</h4>
 			<% } %>
 			<hr>
-			<p>The <b>Doggy Pad</b> is the home page for your doggies; here you will be able to view and add your little friends with the add button below. Don't forget to check the <b>Dogs List</b> to see other doggies for play dates!
-			</p>
+			<h4>The <b>Doggy Pad</b> is the home page for your doggies; here you will be able to view and add your little friends with the add button below. Don't forget to check the <b>Dogs List</b> to see other doggies for play dates!
+			</h4>
 			<a href="/dogs/new" class="btn btn-primary btn-sm">Add Dog</a>
 			<hr>
 		</div>
