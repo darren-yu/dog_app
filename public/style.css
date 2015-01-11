@@ -52,6 +52,22 @@ table {
 	bottom: 0;
 }
 
+@media (max-width: 500px) {
+	a, h3, h4, h5, input, select, label {
+		font-size: 100%;
+	}
+	.wrapper {
+		margin-bottom: 80px;
+	}
+	.navbar-img {
+		height: 35px;
+		width: 120px;
+	}
+	.form-control {
+		font-size: 75%;
+	}
+}
+
 
 
 

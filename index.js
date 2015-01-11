@@ -6,7 +6,7 @@ var multer = require("multer");
 
 var bodyParser = require("body-parser");
 
-var bcrypt = require("bcrypt"); 
+var bcrypt = require("bcrypt");
 
 var db = require("./models/");
 
@@ -15,7 +15,7 @@ var cloudinary = require("cloudinary");
 var flash = require("connect-flash");
 
 var sendgrid = require("sendgrid")(
-    process.env.SENDGRID_USERNAME, 
+    process.env.SENDGRID_USERNAME,
     process.env.SENDGRID_PASSWORD
 );
 
@@ -35,7 +35,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
- 
+
 app.use(flash());
 
 // middleware for sessions.
@@ -57,7 +57,7 @@ app.get("*", function(req, res, next) {
 
 // main landing page
 app.get("/",function(req,res){
-    res.render("index"); 
+    res.render("index");
 });
 
 
@@ -148,7 +148,7 @@ app.post("/auth/signup",function(req,res){
             }
             res.redirect("/auth/signup");
         })
-  
+
 });
 
 
@@ -198,11 +198,11 @@ app.post("/dogs", function(req, res) {
                         res.redirect("/dogs");
 
                     },{"public_id":"dog_" + dogInfo.id});
-                    
+
                 })
             })
         })
-    } 
+    }
     else {
         res.redirect("/auth/login");
     }
@@ -220,7 +220,7 @@ app.get("/dogs", function(req, res) {
             dogs = dogs.map(function(element) {
                 element.thumb = cloudinary.url("dog_" + element.id + ".png", {
                     width: 70,
-                    height: 70, 
+                    height: 70,
                     crop: "fill",
                     gravity: "face",
                     radius: "max"
@@ -228,13 +228,13 @@ app.get("/dogs", function(req, res) {
                 return element;
             });
 
-            res.render("dogs", {"dogs":dogs,"user":user});  
+            res.render("dogs", {"dogs":dogs,"user":user});
         })
-    } 
+    }
     else {
         res.redirect("/auth/login")
     }
-    
+
 })
 
 
@@ -247,14 +247,14 @@ app.delete("/dogs/:id", function(req, res) {
 })
 
 
-// get route for all the dogs in the dogs models 
+// get route for all the dogs in the dogs models
 app.get("/dogs/list", function(req, res) {
 
     var user = req.getUser();
     // res.send(user);
 
     // filter object to check against db per the req.queries.
-    var filters = {userId:{ne:user.id}};
+    var filters = {"userId":{ne:user.id}};
 
     // filtering dogs by criteria and passing the filtered key/value pair to check against dogs db.
     if(req.query.weight) {
@@ -271,7 +271,7 @@ app.get("/dogs/list", function(req, res) {
             alldogs = alldogs.map(function(element) {
                 element.thumb = cloudinary.url("dog_" + element.id + ".png", {
                     width: 70,
-                    height: 70, 
+                    height: 70,
                     crop: "fill",
                     gravity: "face",
                     radius: "max"
@@ -344,7 +344,7 @@ app.post("/dogs/play/:id", function(req, res) {
 //logout
 app.get("/auth/logout",function(req, res){
 
-    // res.send('logged out'); 
+    // res.send('logged out');
     delete req.session.user;
     req.flash("info", "You have been log out");
     res.redirect("/");
